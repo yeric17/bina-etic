@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+/* ==========================================================================
+   BINA ETIC - Global Styles
+   Import Design System
+   ========================================================================== */
+
+@import './app/theme/index.css';

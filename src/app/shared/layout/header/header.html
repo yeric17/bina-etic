@@ -1,1 +1,83 @@
-<p>header works!</p>
+<header class="header" [class.scrolled]="isScrolled()" @fadeInDown>
+  <div class="header-container container">
+    <!-- Logo -->
+    <a routerLink="/" class="logo" (click)="scrollToSection('hero')">
+      <img src="/logo.jpg" alt="BINA ETIC" class="logo-image">
+      <span class="logo-text">BINA ETIC</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="nav-desktop">
+      @for (item of navItems; track item.path + item.fragment) {
+        <a 
+          class="nav-link"
+          [routerLink]="item.path"
+          [fragment]="item.fragment"
+          (click)="scrollToSection(item.fragment)"
+        >
+          {{ item.label }}
+        </a>
+      }
+    </nav>
+
+    <!-- CTA Button Desktop -->
+    <a 
+      class="btn btn-primary cta-desktop"
+      [routerLink]="'/'"
+      [fragment]="'contacto'"
+      (click)="scrollToSection('contacto')"
+    >
+      <i class="pi pi-send"></i>
+      Contáctanos
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button 
+      class="menu-toggle"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-label="Toggle menu"
+    >
+      <span class="hamburger" [class.active]="menuOpen()">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  @if (menuOpen()) {
+    <div class="menu-overlay" (click)="closeMenu()"></div>
+  }
+
+  <!-- Mobile Menu -->
+  <nav 
+    class="nav-mobile"
+    [@mobileMenu]="menuOpen() ? 'open' : 'closed'"
+    [class.active]="menuOpen()"
+  >
+    <div class="nav-mobile-content">
+      @for (item of navItems; track item.path + item.fragment) {
+        <a 
+          class="nav-link-mobile"
+          [routerLink]="item.path"
+          [fragment]="item.fragment"
+          (click)="scrollToSection(item.fragment)"
+        >
+          {{ item.label }}
+        </a>
+      }
+      
+      <a 
+        class="btn btn-primary btn-lg mt-6"
+        [routerLink]="'/'"
+        [fragment]="'contacto'"
+        (click)="scrollToSection('contacto')"
+      >
+        <i class="pi pi-send"></i>
+        Contáctanos
+      </a>
+    </div>
+  </nav>
+</header>

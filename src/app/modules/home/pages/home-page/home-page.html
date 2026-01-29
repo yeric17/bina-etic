@@ -1,1 +1,341 @@
-<p>home-page works!</p>
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section id="hero" class="hero">
+  <!-- Background decorations -->
+  <div class="hero-bg">
+    <div class="hero-gradient"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+  </div>
+
+  <div class="container hero-container" @fadeInUp>
+    <div class="hero-content">
+      <span class="hero-badge glass-light">
+        <i class="pi pi-sparkles"></i>
+        Innovación Digital
+      </span>
+      
+      <h1 class="hero-title text-display">
+        Transformamos ideas en
+        <span class="text-gradient">soluciones digitales</span>
+      </h1>
+      
+      <p class="hero-subtitle text-lead">
+        En BINA ETIC desarrollamos software empresarial a medida, 
+        implementamos ERPs y automatizamos procesos para impulsar 
+        el crecimiento de tu negocio.
+      </p>
+
+      <div class="hero-actions">
+        <a 
+          class="btn btn-primary btn-lg"
+          href="#contacto"
+          (click)="scrollToSection('contacto'); $event.preventDefault()"
+        >
+          <i class="pi pi-send"></i>
+          Contáctanos
+        </a>
+        <a 
+          class="btn btn-secondary btn-lg"
+          href="#servicios"
+          (click)="scrollToSection('servicios'); $event.preventDefault()"
+        >
+          <i class="pi pi-arrow-down"></i>
+          Ver Servicios
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero visual element -->
+    <div class="hero-visual">
+      <div class="hero-card glass-card">
+        <div class="hero-card-header">
+          <div class="hero-card-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+        </div>
+        <div class="hero-card-code">
+          <code>
+            <span class="code-keyword">const</span> <span class="code-variable">binaEtic</span> = &#123;<br>
+            &nbsp;&nbsp;<span class="code-property">mission</span>: <span class="code-string">"Innovar"</span>,<br>
+            &nbsp;&nbsp;<span class="code-property">passion</span>: <span class="code-string">"Tecnología"</span>,<br>
+            &nbsp;&nbsp;<span class="code-property">focus</span>: <span class="code-string">"Tu éxito"</span><br>
+            &#125;;
+          </code>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <div class="mouse">
+      <div class="wheel"></div>
+    </div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ============================================
+     SERVICES SECTION
+     ============================================ -->
+<section id="servicios" class="section services-section">
+  <div class="container">
+    @if (servicesVisible()) {
+      <div class="section-header" @fadeInUp>
+        <span class="section-label">Nuestros Servicios</span>
+        <h2 class="section-title">Soluciones que impulsan tu negocio</h2>
+        <p class="section-subtitle text-lead">
+          Ofrecemos servicios integrales de desarrollo de software 
+          adaptados a las necesidades específicas de tu empresa.
+        </p>
+      </div>
+
+      <div class="services-grid" @staggerFadeIn>
+        @for (service of services; track service.title) {
+          <div class="service-card glass-card stagger-item">
+            <div class="service-icon-wrapper">
+              <i class="pi" [ngClass]="service.icon"></i>
+            </div>
+            <h3 class="service-title">{{ service.title }}</h3>
+            <p class="service-description">{{ service.description }}</p>
+            <a 
+              class="service-link"
+              href="#contacto"
+              (click)="scrollToSection('contacto'); $event.preventDefault()"
+            >
+              Saber más
+              <i class="pi pi-arrow-right"></i>
+            </a>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ============================================
+     ABOUT SECTION
+     ============================================ -->
+<section id="nosotros" class="section about-section">
+  <div class="container">
+    @if (aboutVisible()) {
+      <div class="about-grid">
+        <!-- About Content -->
+        <div class="about-content" @fadeInLeft>
+          <span class="section-label">Sobre Nosotros</span>
+          <h2 class="h2">Somos BINA ETIC</h2>
+          <p class="about-text">
+            Somos una empresa especializada en el desarrollo de software empresarial 
+            y soluciones tecnológicas innovadoras. Nuestro equipo de expertos combina 
+            experiencia técnica con visión estratégica para ayudar a las empresas a 
+            alcanzar sus objetivos de negocio.
+          </p>
+          <p class="about-text">
+            Creemos en la tecnología como motor de transformación y trabajamos 
+            junto a nuestros clientes para crear soluciones que generen valor 
+            real y sostenible.
+          </p>
+
+          <div class="about-features">
+            <div class="about-feature">
+              <i class="pi pi-check-circle"></i>
+              <span>Metodologías ágiles</span>
+            </div>
+            <div class="about-feature">
+              <i class="pi pi-check-circle"></i>
+              <span>Soporte continuo</span>
+            </div>
+            <div class="about-feature">
+              <i class="pi pi-check-circle"></i>
+              <span>Tecnología de vanguardia</span>
+            </div>
+            <div class="about-feature">
+              <i class="pi pi-check-circle"></i>
+              <span>Equipo certificado</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="about-stats" @fadeInRight>
+          @for (stat of stats; track stat.label; let i = $index) {
+            <div class="stat-card glass-card">
+              <span class="stat-value text-gradient">
+                {{ animatedStats()[i] }}{{ stat.suffix }}
+              </span>
+              <span class="stat-label">{{ stat.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ============================================
+     PORTFOLIO SECTION
+     ============================================ -->
+<section id="portafolio" class="section portfolio-section">
+  <div class="container">
+    @if (portfolioVisible()) {
+      <div class="section-header" @fadeInUp>
+        <span class="section-label">Portafolio</span>
+        <h2 class="section-title">Proyectos destacados</h2>
+        <p class="section-subtitle text-lead">
+          Conoce algunos de los proyectos que hemos desarrollado 
+          para empresas de diferentes industrias.
+        </p>
+      </div>
+
+      <div class="portfolio-grid" @staggerFadeIn>
+        @for (project of projects; track project.title) {
+          <div class="portfolio-card stagger-item">
+            <div class="portfolio-image" [style.background]="project.gradient">
+              <div class="portfolio-overlay">
+                <span class="portfolio-category">{{ project.category }}</span>
+              </div>
+            </div>
+            <div class="portfolio-content">
+              <h3 class="portfolio-title">{{ project.title }}</h3>
+              <div class="portfolio-tech">
+                @for (tech of project.technologies; track tech) {
+                  <span class="tech-tag">{{ tech }}</span>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ============================================
+     CONTACT SECTION
+     ============================================ -->
+<section id="contacto" class="section contact-section">
+  <div class="container">
+    @if (contactVisible()) {
+      <div class="section-header" @fadeInUp>
+        <span class="section-label">Contacto</span>
+        <h2 class="section-title">¿Listo para empezar?</h2>
+        <p class="section-subtitle text-lead">
+          Cuéntanos sobre tu proyecto y te ayudaremos a hacerlo realidad.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper glass-card" @fadeInLeft>
+          <form (ngSubmit)="onSubmit()" class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name" class="form-label">Nombre</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name"
+                  class="form-input"
+                  [(ngModel)]="contactForm.name"
+                  placeholder="Tu nombre"
+                  required
+                >
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email"
+                  class="form-input"
+                  [(ngModel)]="contactForm.email"
+                  placeholder="tu@email.com"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject" class="form-label">Asunto</label>
+              <input 
+                type="text" 
+                id="subject" 
+                name="subject"
+                class="form-input"
+                [(ngModel)]="contactForm.subject"
+                placeholder="¿En qué podemos ayudarte?"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Mensaje</label>
+              <textarea 
+                id="message" 
+                name="message"
+                class="form-textarea"
+                [(ngModel)]="contactForm.message"
+                placeholder="Cuéntanos sobre tu proyecto..."
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg w-full">
+              <i class="pi pi-send"></i>
+              Enviar mensaje
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info" @fadeInRight>
+          <div class="contact-info-card glass-card">
+            <div class="contact-info-icon">
+              <i class="pi pi-envelope"></i>
+            </div>
+            <div class="contact-info-content">
+              <h4>Email</h4>
+              <a href="mailto:contacto@binaetic.com">contacto&#64;binaetic.com</a>
+            </div>
+          </div>
+
+          <div class="contact-info-card glass-card">
+            <div class="contact-info-icon">
+              <i class="pi pi-phone"></i>
+            </div>
+            <div class="contact-info-content">
+              <h4>Teléfono</h4>
+              <a href="tel:+1234567890">+1 (234) 567-890</a>
+            </div>
+          </div>
+
+          <div class="contact-info-card glass-card">
+            <div class="contact-info-icon">
+              <i class="pi pi-map-marker"></i>
+            </div>
+            <div class="contact-info-content">
+              <h4>Ubicación</h4>
+              <span>Ciudad, País</span>
+            </div>
+          </div>
+
+          <div class="contact-info-card glass-card">
+            <div class="contact-info-icon">
+              <i class="pi pi-clock"></i>
+            </div>
+            <div class="contact-info-content">
+              <h4>Horario</h4>
+              <span>Lun - Vie: 9:00 - 18:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,137 @@
+/* ==========================================================================
+   BINA ETIC - Design System Variables
+   ========================================================================== */
+
+:root {
+  /* ============================================
+     COLOR PALETTE - Dark Theme with Blue Accent
+     ============================================ */
+  
+  /* Background Colors */
+  --color-bg-primary: #050810;
+  --color-bg-secondary: #0a0f1a;
+  --color-bg-tertiary: #111827;
+  --color-bg-elevated: #1a2332;
+  
+  /* Surface Colors (for cards, modals) */
+  --color-surface: rgba(17, 24, 39, 0.7);
+  --color-surface-hover: rgba(26, 35, 50, 0.8);
+  --color-surface-active: rgba(31, 41, 55, 0.9);
+  
+  /* Blue Accent Colors */
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  
+  /* Text Colors */
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --color-text-tertiary: #9ca3af;
+  --color-text-muted: #6b7280;
+  --color-text-accent: var(--color-primary-400);
+  
+  /* Border Colors */
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-hover: rgba(255, 255, 255, 0.2);
+  --color-border-accent: rgba(59, 130, 246, 0.5);
+  
+  /* Gradient Colors */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-400) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                   radial-gradient(ellipse at 80% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 40%),
+                   radial-gradient(ellipse at 20% 80%, rgba(96, 165, 250, 0.08) 0%, transparent 40%);
+  
+  /* ============================================
+     SPACING SCALE (4px base)
+     ============================================ */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+  
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px */
+  --radius-2xl: 1.5rem;   /* 24px */
+  --radius-3xl: 2rem;     /* 32px */
+  --radius-full: 9999px;
+  
+  /* ============================================
+     SHADOWS
+     ============================================ */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+  --shadow-glow-lg: 0 0 40px rgba(59, 130, 246, 0.4);
+  
+  /* ============================================
+     GLASSMORPHISM
+     ============================================ */
+  --glass-bg: rgba(17, 24, 39, 0.6);
+  --glass-bg-light: rgba(255, 255, 255, 0.05);
+  --glass-blur: 16px;
+  --glass-blur-lg: 24px;
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  /* ============================================
+     TRANSITIONS
+     ============================================ */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+  --transition-slower: 500ms ease;
+  
+  /* ============================================
+     Z-INDEX SCALE
+     ============================================ */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+  
+  /* ============================================
+     LAYOUT
+     ============================================ */
+  --container-max: 1280px;
+  --container-padding: var(--space-6);
+  --header-height: 80px;
+  --section-padding: var(--space-20);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --container-padding: var(--space-4);
+    --header-height: 64px;
+    --section-padding: var(--space-12);
+  }
+}
