@@ -1,4 +1,4 @@
-<header class="header" [class.scrolled]="isScrolled()" @fadeInDown>
+<header class="header fade-in-down" [class.scrolled]="isScrolled()">
   <div class="header-container container">
     <!-- Logo -->
     <a routerLink="/" class="logo" (click)="scrollToSection('hero')">
@@ -24,9 +24,10 @@
     <!-- Mobile Menu Button -->
     <button 
       class="menu-toggle"
-      (click)="toggleMenu()"
+      (click)="toggleMenu(); $event.preventDefault()"
       [attr.aria-expanded]="menuOpen()"
       aria-label="Toggle menu"
+      type="button"
     >
       <span class="hamburger" [class.active]="menuOpen()">
         <span class="line"></span>
@@ -44,8 +45,8 @@
   <!-- Mobile Menu -->
   <nav 
     class="nav-mobile"
-    [@mobileMenu]="menuOpen() ? 'open' : 'closed'"
     [class.active]="menuOpen()"
+    [class.mobile-menu-open]="menuOpen()"
   >
     <div class="nav-mobile-content">
       @for (item of navItems; track item.path + item.fragment) {

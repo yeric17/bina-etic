@@ -2,6 +2,55 @@
    Header Component Styles
    ========================================================================== */
 
+/* ============================================
+   ANIMATIONS (CSS Native)
+   ============================================ */
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobileMenuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-down {
+  animation: fadeInDown 400ms ease-out;
+}
+
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-down,
+  .nav-mobile {
+    animation: none;
+    transition: none;
+  }
+  
+  .nav-mobile.mobile-menu-open {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   HEADER POSITIONING
+   ============================================ */
+
 .header {
   position: fixed;
   top: 0;
@@ -12,6 +61,10 @@
   display: flex;
   align-items: center;
   transition: all var(--transition-base);
+  /* Force hardware acceleration for better performance on mobile */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
 
 .header.scrolled {
@@ -158,12 +211,16 @@
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: var(--z-modal-backdrop);
+  /* Prevent scroll issues on mobile */
+  -webkit-overflow-scrolling: auto;
+  overscroll-behavior: contain;
 }
 
+/* Fix duplicated animation rules */
 .nav-mobile {
   display: none;
   position: fixed;
-  top: 0;
+  top: 5rem;
   right: 0;
   bottom: 0;
   width: min(320px, 85vw);
@@ -173,6 +230,34 @@
   border-left: var(--glass-border);
   z-index: var(--z-modal);
   padding: var(--space-20) var(--space-6) var(--space-6);
+  /* Force correct positioning on mobile */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  /* Animation states */
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 300ms ease-out;
+}
+
+/* Active state for mobile menu */
+.nav-mobile.mobile-menu-open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Viewport height fix for mobile browsers */
+@supports (height: 100dvh) {
+  .nav-mobile {
+    height: 100dvh;
+  }
+}
+
+@supports not (height: 100dvh) {
+  .nav-mobile {
+    height: 100vh;
+    /* Fix for iOS Safari address bar */
+    height: calc(100vh - env(safe-area-inset-top, 0px));
+  }
 }
 
 .nav-mobile-content {
@@ -224,6 +309,36 @@
     display: flex;
     flex-direction: column;
   }
+
+  /* Fix mobile positioning issues */
+  .header {
+    /* Ensure fixed positioning works correctly on mobile */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    /* Prevent iOS Safari from moving the header */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* Force the header to stay in place */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Additional mobile-specific fixes */
+  body {
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+  }
+  
+  .header {
+    /* Force GPU acceleration for smoother scrolling */
+    will-change: transform;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @media (max-width: 480px) {
@@ -234,5 +349,10 @@
   .logo-image {
     width: 36px;
     height: 36px;
+  }
+
+  /* Ensure header height is consistent on small screens */
+  .header {
+    min-height: var(--header-height);
   }
 }
