@@ -92,15 +92,22 @@
   gap: var(--space-3);
   text-decoration: none;
   z-index: var(--z-modal);
+  
 }
 
 .logo-image {
-  width: 44px;
-  height: 44px;
+
+  height: 2rem;
   border-radius: var(--radius-md);
   object-fit: cover;
 }
 
+.logo-image-container{
+  background-color: white;
+  padding: 4px;
+  width: 2rem;
+  border-radius: var(--radius-sm);
+}
 .logo-text {
   font-size: 1.25rem;
   font-weight: 700;
