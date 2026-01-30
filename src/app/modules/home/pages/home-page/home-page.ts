@@ -51,7 +51,7 @@ export class HomePage implements OnInit {
     {
       icon: 'pi-box',
       title: 'Software ERP',
-      description: 'Implementamos soluciones ERP, desde plataformas probadas como Odoo hasta desarrollos 100% a medida, adaptados a tus procesos.'
+      description: 'Implementamos soluciones ERP, desde plataformas probadas hasta desarrollos 100% a medida, adaptados a tus procesos.'
     },
     {
       icon: 'pi-globe',
