@@ -5,7 +5,7 @@
 
 
 
-  <div class="container hero-container" @fadeInUp>
+  <div class="container hero-container fade-in-up">
     <div class="hero-content">
       
       <h1 class="hero-title text-display">
@@ -53,7 +53,7 @@
 <section id="servicios" class="section services-section">
   <div class="container">
     @if (servicesVisible()) {
-      <div class="section-header" @fadeInUp>
+      <div class="section-header fade-in-up">
         <span class="section-label">Nuestros Servicios</span>
         <h2 class="section-title">Soluciones con propósito estratégico</h2>
         <p class="section-subtitle text-lead">
@@ -62,7 +62,7 @@
         </p>
       </div>
 
-      <div class="services-grid" @staggerFadeIn>
+      <div class="services-grid stagger-container">
         @for (service of services; track service.title) {
           <div class="service-card glass-card stagger-item">
             <div class="service-icon-wrapper">
@@ -93,7 +93,7 @@
     @if (aboutVisible()) {
       <div class="about-grid">
         <!-- About Content -->
-        <div class="about-content" @fadeInLeft>
+        <div class="about-content fade-in-left">
           <span class="section-label">Sobre Nosotros</span>
           <h2 class="h2">Somos BINA ETIC</h2>
           <p class="about-text">
@@ -130,7 +130,7 @@
         </div>
 
         <!-- Stats -->
-        <div class="about-stats" @fadeInRight>
+        <div class="about-stats fade-in-right">
           @for (stat of stats; track stat.label; let i = $index) {
             <div class="stat-card glass-card">
               <span class="stat-value text-gradient">
@@ -151,7 +151,7 @@
 <!-- <section id="portafolio" class="section portfolio-section">
   <div class="container">
     @if (portfolioVisible()) {
-      <div class="section-header" @fadeInUp>
+      <div class="section-header fade-in-up">
         <span class="section-label">Portafolio</span>
         <h2 class="section-title">Proyectos destacados</h2>
         <p class="section-subtitle text-lead">
@@ -160,7 +160,7 @@
         </p>
       </div>
 
-      <div class="portfolio-grid" @staggerFadeIn>
+      <div class="portfolio-grid stagger-container">
         @for (project of projects; track project.title) {
           <div class="portfolio-card stagger-item">
             <div class="portfolio-image" [style.background]="project.gradient">
@@ -189,7 +189,7 @@
 <section id="contacto" class="section contact-section">
   <div class="container">
     @if (contactVisible()) {
-      <div class="section-header" @fadeInUp>
+      <div class="section-header fade-in-up">
         <span class="section-label">Contacto</span>
         <h2 class="section-title">¿Listo para empezar?</h2>
         <p class="section-subtitle text-lead">
@@ -199,7 +199,7 @@
 
       <div class="contact-grid">
         <!-- Contact Form -->
-        <div class="contact-form-wrapper glass-card" @fadeInLeft>
+        <div class="contact-form-wrapper glass-card fade-in-left">
           <form (ngSubmit)="onSubmit()" class="contact-form">
             <div class="form-row">
               <div class="form-group">
@@ -262,7 +262,7 @@
         </div>
 
         <!-- Contact Info -->
-        <div class="contact-info" @fadeInRight>
+        <div class="contact-info fade-in-right">
           <div class="contact-info-card glass-card">
             <div class="contact-info-icon">
               <i class="pi pi-envelope"></i>

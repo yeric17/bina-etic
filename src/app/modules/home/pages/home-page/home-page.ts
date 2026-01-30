@@ -1,7 +1,6 @@
 import { Component, signal, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 interface Service {
   icon: string;
@@ -33,43 +32,7 @@ interface ContactForm {
   selector: 'app-home-page',
   imports: [CommonModule, FormsModule],
   templateUrl: './home-page.html',
-  styleUrl: './home-page.css',
-  animations: [
-    trigger('fadeInUp', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(30px)' }),
-        animate('600ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-      ])
-    ]),
-    trigger('fadeInLeft', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateX(-30px)' }),
-        animate('600ms ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
-      ])
-    ]),
-    trigger('fadeInRight', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateX(30px)' }),
-        animate('600ms ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
-      ])
-    ]),
-    trigger('staggerFadeIn', [
-      transition(':enter', [
-        query('.stagger-item', [
-          style({ opacity: 0, transform: 'translateY(30px)' }),
-          stagger('100ms', [
-            animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-          ])
-        ], { optional: true })
-      ])
-    ]),
-    trigger('scaleIn', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'scale(0.9)' }),
-        animate('500ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
-      ])
-    ])
-  ]
+  styleUrl: './home-page.css'
 })
 export class HomePage implements OnInit {
   private platformId = inject(PLATFORM_ID);
