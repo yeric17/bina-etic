@@ -2,30 +2,21 @@
      HERO SECTION
      ============================================ -->
 <section id="hero" class="hero">
-  <!-- Background decorations -->
-  <div class="hero-bg">
-    <div class="hero-gradient"></div>
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-orb hero-orb-3"></div>
-  </div>
+
+
 
   <div class="container hero-container" @fadeInUp>
     <div class="hero-content">
-      <span class="hero-badge glass-light">
-        <i class="pi pi-sparkles"></i>
-        Innovación Digital
-      </span>
       
       <h1 class="hero-title text-display">
-        Transformamos ideas en
-        <span class="text-gradient">soluciones digitales</span>
+        Entendimiento aplicado en 
+        <span class="text-gradient">propósitos tecnológicos</span>
       </h1>
       
       <p class="hero-subtitle text-lead">
-        En BINA ETIC desarrollamos software empresarial a medida, 
-        implementamos ERPs y automatizamos procesos para impulsar 
-        el crecimiento de tu negocio.
+        "La sabiduría práctica precede a la ejecución técnica"
+
+        Transformamos ideas en soluciones digitales mediante el proceso racional de BINA ETIC. Nuestro enfoque combina comprensión profunda con implementación técnica precisa para generar resultados medibles y duraderos.
       </p>
 
       <div class="hero-actions">
@@ -50,34 +41,10 @@
 
     <!-- Hero visual element -->
     <div class="hero-visual">
-      <div class="hero-card glass-card">
-        <div class="hero-card-header">
-          <div class="hero-card-dots">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
-          </div>
-        </div>
-        <div class="hero-card-code">
-          <code>
-            <span class="code-keyword">const</span> <span class="code-variable">binaEtic</span> = &#123;<br>
-            &nbsp;&nbsp;<span class="code-property">mission</span>: <span class="code-string">"Innovar"</span>,<br>
-            &nbsp;&nbsp;<span class="code-property">passion</span>: <span class="code-string">"Tecnología"</span>,<br>
-            &nbsp;&nbsp;<span class="code-property">focus</span>: <span class="code-string">"Tu éxito"</span><br>
-            &#125;;
-          </code>
-        </div>
-      </div>
+          <img src="hero-bg.png" alt="Hero Background" class="hero-bg-image" />
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <div class="scroll-indicator">
-    <div class="mouse">
-      <div class="wheel"></div>
-    </div>
-    <span>Scroll</span>
-  </div>
 </section>
 
 <!-- ============================================
@@ -88,10 +55,10 @@
     @if (servicesVisible()) {
       <div class="section-header" @fadeInUp>
         <span class="section-label">Nuestros Servicios</span>
-        <h2 class="section-title">Soluciones que impulsan tu negocio</h2>
+        <h2 class="section-title">Soluciones con propósito estratégico</h2>
         <p class="section-subtitle text-lead">
           Ofrecemos servicios integrales de desarrollo de software 
-          adaptados a las necesidades específicas de tu empresa.
+          con un diagnóstico profundo del contexto empresarial y análisis exhaustivo de los procesos.
         </p>
       </div>
 
@@ -103,14 +70,14 @@
             </div>
             <h3 class="service-title">{{ service.title }}</h3>
             <p class="service-description">{{ service.description }}</p>
-            <a 
+            <!-- <a 
               class="service-link"
               href="#contacto"
               (click)="scrollToSection('contacto'); $event.preventDefault()"
             >
               Saber más
               <i class="pi pi-arrow-right"></i>
-            </a>
+            </a> -->
           </div>
         }
       </div>
@@ -131,24 +98,25 @@
           <h2 class="h2">Somos BINA ETIC</h2>
           <p class="about-text">
             Somos una empresa especializada en el desarrollo de software empresarial 
-            y soluciones tecnológicas innovadoras. Nuestro equipo de expertos combina 
-            experiencia técnica con visión estratégica para ayudar a las empresas a 
-            alcanzar sus objetivos de negocio.
+            y soluciones tecnológicas. Nuestro punto de partida es entender a fondo 
+            los procesos y el contexto de cada cliente para diseñar e implementar la 
+            solución que realmente necesita.
           </p>
           <p class="about-text">
-            Creemos en la tecnología como motor de transformación y trabajamos 
-            junto a nuestros clientes para crear soluciones que generen valor 
-            real y sostenible.
+            Creemos en la tecnología como motor de transformación cuando responde a 
+            un diagnóstico claro. Por eso trabajamos de la mano con nuestros clientes, 
+            validamos prioridades y entregamos soluciones que generan valor real, 
+            medible y sostenible.
           </p>
 
           <div class="about-features">
             <div class="about-feature">
               <i class="pi pi-check-circle"></i>
-              <span>Metodologías ágiles</span>
+              <span>Entendimiento real del problema</span>
             </div>
             <div class="about-feature">
               <i class="pi pi-check-circle"></i>
-              <span>Soporte continuo</span>
+              <span>Asesoría personalizada</span>
             </div>
             <div class="about-feature">
               <i class="pi pi-check-circle"></i>
@@ -180,7 +148,7 @@
 <!-- ============================================
      PORTFOLIO SECTION
      ============================================ -->
-<section id="portafolio" class="section portfolio-section">
+<!-- <section id="portafolio" class="section portfolio-section">
   <div class="container">
     @if (portfolioVisible()) {
       <div class="section-header" @fadeInUp>
@@ -213,7 +181,7 @@
       </div>
     }
   </div>
-</section>
+</section> -->
 
 <!-- ============================================
      CONTACT SECTION
@@ -301,7 +269,7 @@
             </div>
             <div class="contact-info-content">
               <h4>Email</h4>
-              <a href="mailto:contacto@binaetic.com">contacto&#64;binaetic.com</a>
+              <a href="mailto:is.projects@binaetic.com" #contactInfoLink>is.projects@binaetic.com</a>
             </div>
           </div>
 
@@ -311,7 +279,7 @@
             </div>
             <div class="contact-info-content">
               <h4>Teléfono</h4>
-              <a href="tel:+1234567890">+1 (234) 567-890</a>
+              <a href="tel:+573183974206">+57 3183974206</a>
             </div>
           </div>
 
@@ -321,7 +289,7 @@
             </div>
             <div class="contact-info-content">
               <h4>Ubicación</h4>
-              <span>Ciudad, País</span>
+              <span>Bogotá, Colombia</span>
             </div>
           </div>
 
@@ -331,7 +299,7 @@
             </div>
             <div class="contact-info-content">
               <h4>Horario</h4>
-              <span>Lun - Vie: 9:00 - 18:00</span>
+              <span>Lun - Vie: 8:00 - 18:00</span>
             </div>
           </div>
         </div>

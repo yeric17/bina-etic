@@ -86,14 +86,14 @@ export class HomePage implements OnInit {
 
   services: Service[] = [
     {
+      icon: 'pi-box',
+      title: 'Software ERP',
+      description: 'Implementamos soluciones ERP, desde plataformas probadas como Odoo hasta desarrollos 100% a medida, adaptados a tus procesos.'
+    },
+    {
       icon: 'pi-globe',
       title: 'Desarrollo Web',
       description: 'Creamos aplicaciones web modernas, escalables y de alto rendimiento utilizando las últimas tecnologías del mercado.'
-    },
-    {
-      icon: 'pi-box',
-      title: 'Software ERP (Odoo)',
-      description: 'Implementamos y personalizamos Odoo para optimizar tus procesos empresariales y aumentar la productividad.'
     },
     {
       icon: 'pi-comments',
@@ -103,7 +103,7 @@ export class HomePage implements OnInit {
     {
       icon: 'pi-sync',
       title: 'Automatizaciones',
-      description: 'Automatizamos procesos repetitivos para reducir errores, ahorrar tiempo y mejorar la eficiencia operativa.'
+      description: 'Ahorramos tiempo automatizando procesos repetitivos, reduciendo errores y mejorando la eficiencia operativa potenciandolo con IA'
     }
   ];
 

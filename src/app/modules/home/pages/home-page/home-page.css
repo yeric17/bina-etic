@@ -15,12 +15,21 @@
   padding-top: var(--header-height);
 }
 
+
+
 /* Hero Background */
 .hero-bg {
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
+}
+
+.hero-bg-image{
+  display: block;
+  aspect-ratio: 1/1;
+  border-radius: 1.5rem;
+  border: 2px solid var(--color-border-accent);
 }
 
 .hero-gradient {
@@ -76,8 +85,7 @@
 
 /* Hero Content */
 .hero-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: var(--space-6);
 }
 
@@ -116,6 +124,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .hero-card {

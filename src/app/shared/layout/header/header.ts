@@ -42,7 +42,7 @@ export class Header {
     { label: 'Inicio', path: '/', fragment: 'hero' },
     { label: 'Servicios', path: '/', fragment: 'servicios' },
     { label: 'Nosotros', path: '/', fragment: 'nosotros' },
-    { label: 'Portafolio', path: '/', fragment: 'portafolio' },
+    // { label: 'Portafolio', path: '/', fragment: 'portafolio' },
     { label: 'Contacto', path: '/', fragment: 'contacto' }
   ];
 
