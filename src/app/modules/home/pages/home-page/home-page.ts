@@ -1,6 +1,8 @@
 import { Component, signal, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ContactService } from '../../../../core/services/contact.service';
+import { ContactFormData } from '../../../../core/interfaces/email.interface';
 
 interface Service {
   icon: string;
@@ -21,12 +23,7 @@ interface Project {
   gradient: string;
 }
 
-interface ContactForm {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
+
 
 @Component({
   selector: 'app-home-page',
@@ -36,6 +33,7 @@ interface ContactForm {
 })
 export class HomePage implements OnInit {
   private platformId = inject(PLATFORM_ID);
+  private contactService = inject(ContactService);
   
   // Visibility signals for scroll animations
   heroVisible = signal(true);
@@ -46,6 +44,11 @@ export class HomePage implements OnInit {
 
   // Animated counter values
   animatedStats = signal<number[]>([0, 0, 0]);
+  
+  // Contact form state
+  isSubmitting = signal(false);
+  submitMessage = signal<string>('');
+  submitSuccess = signal<boolean>(false);
 
   services: Service[] = [
     {
@@ -115,7 +118,7 @@ export class HomePage implements OnInit {
     }
   ];
 
-  contactForm: ContactForm = {
+  contactForm: ContactFormData = {
     name: '',
     email: '',
     subject: '',
@@ -201,9 +204,48 @@ export class HomePage implements OnInit {
   }
 
   onSubmit() {
-    console.log('Form submitted:', this.contactForm);
-    // Here you would typically send the form data to a backend
-    alert('¡Gracias por tu mensaje! Nos pondremos en contacto pronto.');
-    this.contactForm = { name: '', email: '', subject: '', message: '' };
+    if (this.isSubmitting()) return;
+    
+    // Reset previous messages
+    this.submitMessage.set('');
+    this.submitSuccess.set(false);
+    
+    // Basic validation
+    if (!this.contactForm.name.trim() || !this.contactForm.email.trim() || 
+        !this.contactForm.subject.trim() || !this.contactForm.message.trim()) {
+      this.submitMessage.set('Por favor completa todos los campos');
+      this.submitSuccess.set(false);
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.contactForm.email)) {
+      this.submitMessage.set('Por favor ingresa un email válido');
+      this.submitSuccess.set(false);
+      return;
+    }
+    
+    this.isSubmitting.set(true);
+    
+    this.contactService.sendContactEmail(this.contactForm).subscribe({
+      next: (response: any) => {
+        if (response.success) {
+          this.submitMessage.set('¡Mensaje enviado exitosamente! Nos pondremos en contacto pronto.');
+          this.submitSuccess.set(true);
+          this.contactForm = { name: '', email: '', subject: '', message: '' };
+        } else {
+          this.submitMessage.set(response.error || 'Error al enviar el mensaje. Inténtalo nuevamente.');
+          this.submitSuccess.set(false);
+        }
+        this.isSubmitting.set(false);
+      },
+      error: (error: any) => {
+        console.error('Contact form error:', error);
+        this.submitMessage.set('Error al enviar el mensaje. Inténtalo nuevamente.');
+        this.submitSuccess.set(false);
+        this.isSubmitting.set(false);
+      }
+    });
   }
 }

@@ -251,10 +251,31 @@
               ></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-lg w-full">
-              <i class="pi pi-send"></i>
-              Enviar mensaje
+            <button 
+              type="submit" 
+              class="btn btn-primary btn-lg w-full"
+              [class.loading]="isSubmitting()"
+              [disabled]="isSubmitting()"
+            >
+              @if (isSubmitting()) {
+                <i class="pi pi-spin pi-spinner"></i>
+                Enviando...
+              } @else {
+                <i class="pi pi-send"></i>
+                Enviar mensaje
+              }
             </button>
+            
+            @if (submitMessage()) {
+              <div 
+                class="submit-message"
+                [class.success]="submitSuccess()"
+                [class.error]="!submitSuccess()"
+              >
+                <i class="pi" [ngClass]="submitSuccess() ? 'pi-check-circle' : 'pi-times-circle'"></i>
+                {{ submitMessage() }}
+              </div>
+            }
           </form>
         </div>
 
