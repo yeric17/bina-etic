@@ -2,14 +2,11 @@ import {
   AngularNodeAppEngine,
   createNodeRequestHandler,
   isMainModule,
-  writeResponseToNodeResponse,
+  writeResponseToNodeResponse
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
-import { GmailAdapter } from './app/core/adapters/gmail.adapter';
-import { EmailTemplateService } from './app/core/services/email-template.service';
-import { environment } from './environments/environment';
-import type { ContactFormData, EmailResponse } from './app/core/interfaces/email.interface';
+
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -113,28 +110,28 @@ const angularApp = new AngularNodeAppEngine();
 //  * ```
 //  */
 
-// /**
-//  * Serve static files from /browser
-//  */
-// app.use(
-//   express.static(browserDistFolder, {
-//     maxAge: '1y',
-//     index: false,
-//     redirect: false,
-//   }),
-// );
+/**
+ * Serve static files from /browser
+ */
+app.use(
+  express.static(browserDistFolder, {
+    maxAge: '1y',
+    index: false,
+    redirect: false,
+  }),
+);
 
-// /**
-//  * Handle all other requests by rendering the Angular application.
-//  */
-// app.use((req, res, next) => {
-//   angularApp
-//     .handle(req)
-//     .then((response) =>
-//       response ? writeResponseToNodeResponse(response, res) : next(),
-//     )
-//     .catch(next);
-// });
+/**
+ * Handle all other requests by rendering the Angular application.
+ */
+app.use((req, res, next) => {
+  angularApp
+    .handle(req)
+    .then((response) =>
+      response ? writeResponseToNodeResponse(response, res) : next(),
+    )
+    .catch(next);
+});
 
 /**
  * Start the server if this module is the main entry point.
