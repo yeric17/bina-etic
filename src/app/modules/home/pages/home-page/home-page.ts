@@ -1,7 +1,7 @@
 import { Component, signal, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ContactService } from '../../../../core/services/contact.service';
+// import { ContactService } from '../../../../core/services/contact.service';
 import { ContactFormData } from '../../../../core/interfaces/email.interface';
 
 interface Service {
@@ -33,7 +33,7 @@ interface Project {
 })
 export class HomePage implements OnInit {
   private platformId = inject(PLATFORM_ID);
-  private contactService = inject(ContactService);
+  // private contactService = inject(ContactService);
   
   // Visibility signals for scroll animations
   heroVisible = signal(true);
@@ -204,48 +204,6 @@ export class HomePage implements OnInit {
   }
 
   onSubmit() {
-    if (this.isSubmitting()) return;
     
-    // Reset previous messages
-    this.submitMessage.set('');
-    this.submitSuccess.set(false);
-    
-    // Basic validation
-    if (!this.contactForm.name.trim() || !this.contactForm.email.trim() || 
-        !this.contactForm.subject.trim() || !this.contactForm.message.trim()) {
-      this.submitMessage.set('Por favor completa todos los campos');
-      this.submitSuccess.set(false);
-      return;
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(this.contactForm.email)) {
-      this.submitMessage.set('Por favor ingresa un email válido');
-      this.submitSuccess.set(false);
-      return;
-    }
-    
-    this.isSubmitting.set(true);
-    
-    this.contactService.sendContactEmail(this.contactForm).subscribe({
-      next: (response: any) => {
-        if (response.success) {
-          this.submitMessage.set('¡Mensaje enviado exitosamente! Nos pondremos en contacto pronto.');
-          this.submitSuccess.set(true);
-          this.contactForm = { name: '', email: '', subject: '', message: '' };
-        } else {
-          this.submitMessage.set(response.error || 'Error al enviar el mensaje. Inténtalo nuevamente.');
-          this.submitSuccess.set(false);
-        }
-        this.isSubmitting.set(false);
-      },
-      error: (error: any) => {
-        console.error('Contact form error:', error);
-        this.submitMessage.set('Error al enviar el mensaje. Inténtalo nuevamente.');
-        this.submitSuccess.set(false);
-        this.isSubmitting.set(false);
-      }
-    });
   }
 }
