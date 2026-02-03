@@ -81,6 +81,23 @@
           </div>
         }
       </div>
+
+      <!-- Technologies Grid -->
+      <div class="technologies-wrapper fade-in-up">
+        <h3 class="technologies-title">Algunas tecnologías que utilizamos</h3>
+        <div class="technologies-grid">
+          @for (tech of technologies; track tech.name) {
+            <div class="technology-card glass-card">
+              <img 
+                [src]="tech.image" 
+                [alt]="tech.alt" 
+                class="technology-image"
+                loading="lazy"
+              />
+            </div>
+          }
+        </div>
+      </div>
     }
   </div>
 </section>

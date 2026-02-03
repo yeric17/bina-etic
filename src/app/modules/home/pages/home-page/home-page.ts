@@ -3,6 +3,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 // import { ContactService } from '../../../../core/services/contact.service';
 import { ContactFormData } from '../../../../core/interfaces/email.interface';
+import { TECHNOLOGIES, Technology } from './technologies.data';
 
 interface Service {
   icon: string;
@@ -49,6 +50,8 @@ export class HomePage implements OnInit {
   isSubmitting = signal(false);
   submitMessage = signal<string>('');
   submitSuccess = signal<boolean>(false);
+
+  technologies: Technology[] = TECHNOLOGIES;
 
   services: Service[] = [
     {
