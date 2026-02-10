@@ -1,7 +1,7 @@
 import { ContactFormData } from '../interfaces/email.interface';
 
 export class EmailTemplateService {
-  static generateContactEmailHtml(formData: ContactFormData): string {
+  public generateContactEmailHtml(formData: ContactFormData): string {
     return `
       <!DOCTYPE html>
       <html lang="es">
@@ -176,7 +176,7 @@ export class EmailTemplateService {
     `;
   }
   
-  static generateContactEmailText(formData: ContactFormData): string {
+  private generateContactEmailText(formData: ContactFormData): string {
     return `
 NUEVO MENSAJE DE CONTACTO - BINA ETIC
 
@@ -196,7 +196,7 @@ Zipaquirá, Colombia
     `.trim();
   }
   
-  private static escapeHtml(text: string): string {
+  private escapeHtml(text: string): string {
     const map: { [key: string]: string } = {
       '&': '&amp;',
       '<': '&lt;',
