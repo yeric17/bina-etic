@@ -48,6 +48,8 @@
   width: 40px;
   height: 40px;
   border-radius: var(--radius-md);
+  background-color: #fff;
+  padding: .25rem;
   object-fit: cover;
 }
 
