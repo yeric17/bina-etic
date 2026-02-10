@@ -214,7 +214,7 @@
       <div class="contact-grid">
         <!-- Contact Form -->
         <div class="contact-form-wrapper glass-card fade-in-left">
-          <form (ngSubmit)="onSubmit()" class="contact-form">
+          <form (ngSubmit)="onSubmit()" class="contact-form" [formGroup]="contactForm">
             <div class="form-row">
               <div class="form-group">
                 <label for="name" class="form-label">Nombre</label>
@@ -223,7 +223,7 @@
                   id="name" 
                   name="name"
                   class="form-input"
-                  [(ngModel)]="contactForm.name"
+                  formControlName="name"
                   placeholder="Tu nombre"
                   required
                 >
@@ -235,7 +235,7 @@
                   id="email" 
                   name="email"
                   class="form-input"
-                  [(ngModel)]="contactForm.email"
+                  formControlName="email"
                   placeholder="tu@email.com"
                   required
                 >
@@ -249,7 +249,7 @@
                 id="subject" 
                 name="subject"
                 class="form-input"
-                [(ngModel)]="contactForm.subject"
+                formControlName="subject"
                 placeholder="¿En qué podemos ayudarte?"
                 required
               >
@@ -261,7 +261,7 @@
                 id="message" 
                 name="message"
                 class="form-textarea"
-                [(ngModel)]="contactForm.message"
+                formControlName="message"
                 placeholder="Cuéntanos sobre tu proyecto..."
                 rows="5"
                 required

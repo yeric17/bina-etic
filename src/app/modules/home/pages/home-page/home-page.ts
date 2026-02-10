@@ -1,9 +1,11 @@
 import { Component, signal, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { ContactService } from '../../../../core/services/contact.service';
 import { ContactFormData } from '../../../../core/interfaces/email.interface';
 import { TECHNOLOGIES, Technology } from './technologies.data';
+import { ContactService } from '../../../../core/services/contact.service';
+import { take } from 'rxjs';
 
 interface Service {
   icon: string;
@@ -28,13 +30,13 @@ interface Project {
 
 @Component({
   selector: 'app-home-page',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })
 export class HomePage implements OnInit {
   private platformId = inject(PLATFORM_ID);
-  // private contactService = inject(ContactService);
+  private contactService = inject(ContactService);
   
   // Visibility signals for scroll animations
   heroVisible = signal(true);
@@ -121,12 +123,12 @@ export class HomePage implements OnInit {
     }
   ];
 
-  contactForm: ContactFormData = {
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  };
+  contactForm = new FormGroup({
+    name: new FormGroup(''),
+    email: new FormGroup(''),
+    subject: new FormGroup(''),
+    message: new FormGroup('')
+  });
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -207,6 +209,38 @@ export class HomePage implements OnInit {
   }
 
   onSubmit() {
+    if(this.isSubmitting() || this.contactForm.invalid) return; // Prevent multiple submissions
     
+    this.isSubmitting.set(true);
+
+    const formData = this.contactFormToData();
+
+
+    this.contactService.sendContactEmail(formData)
+    .pipe(take(1))
+    .subscribe({
+      next: () => {
+        this.isSubmitting.set(false);
+        this.submitMessage.set('¡Mensaje enviado con éxito!');
+        this.submitSuccess.set(true);
+        this.contactForm.reset();
+      },
+      error: () => {
+        this.isSubmitting.set(false);
+        this.submitMessage.set('Error al enviar el mensaje. Por favor, inténtalo de nuevo.');
+        this.submitSuccess.set(false);
+      }
+    })
+  }
+
+  contactFormToData(): ContactFormData {
+    const formValue = this.contactForm.value;
+
+    return {
+      name: formValue.name || '',
+      email: formValue.email || '',
+      subject: formValue.subject || '',
+      message: formValue.message || ''
+    };
   }
 }
