@@ -15,14 +15,14 @@ export class ContactService {
 
   constructor(private http: HttpClient) {}
 
-  sendContactEmail(formData: ContactFormData): Observable<EmailResponse> {
+  sendContactEmail(formData: ContactFormData): Observable<any> {
 
     const emailBody = this.emailTemplateService.generateContactEmailHtml(formData);
 
-    return this.http.post<EmailResponse>(this.apiUrl, {
+    return this.http.post(this.apiUrl, {
+      to: environment.contactEmail,
       name: formData.name,
       contactEmail: formData.email,
-      to: environment.contactEmail,
       subject: formData.subject,
       body: emailBody
     });

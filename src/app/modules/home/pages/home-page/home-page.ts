@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angul
 import { ContactFormData } from '../../../../core/interfaces/email.interface';
 import { TECHNOLOGIES, Technology } from './technologies.data';
 import { ContactService } from '../../../../core/services/contact.service';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 
 interface Service {
   icon: string;
@@ -47,7 +47,7 @@ export class HomePage implements OnInit {
 
   // Animated counter values
   animatedStats = signal<number[]>([0, 0, 0]);
-  
+
   // Contact form state
   isSubmitting = signal(false);
   submitMessage = signal<string>('');
@@ -129,6 +129,8 @@ export class HomePage implements OnInit {
     subject: new FormControl<string>(''),
     message: new FormControl<string>('')
   });
+
+  contactEmailSubscription:Subscription | null = null;
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -212,23 +214,29 @@ export class HomePage implements OnInit {
     if(this.isSubmitting() || this.contactForm.invalid) return; // Prevent multiple submissions
     
     this.isSubmitting.set(true);
-
+    this.contactEmailSubscription?.unsubscribe();
+    
     const formData = this.contactFormToData();
 
 
-    this.contactService.sendContactEmail(formData)
-    .pipe(take(1))
+    this.contactEmailSubscription = this.contactService.sendContactEmail(formData)
     .subscribe({
       next: () => {
         this.isSubmitting.set(false);
         this.submitMessage.set('¡Mensaje enviado con éxito!');
         this.submitSuccess.set(true);
         this.contactForm.reset();
+        this.contactEmailSubscription?.unsubscribe();
+        this.contactEmailSubscription = null;
+
       },
       error: () => {
         this.isSubmitting.set(false);
         this.submitMessage.set('Error al enviar el mensaje. Por favor, inténtalo de nuevo.');
         this.submitSuccess.set(false);
+        this.contactEmailSubscription?.unsubscribe();
+        this.contactEmailSubscription = null;
+
       }
     })
   }
