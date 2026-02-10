@@ -1,6 +1,6 @@
 import { Component, signal, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { ContactService } from '../../../../core/services/contact.service';
 import { ContactFormData } from '../../../../core/interfaces/email.interface';
 import { TECHNOLOGIES, Technology } from './technologies.data';
@@ -124,10 +124,10 @@ export class HomePage implements OnInit {
   ];
 
   contactForm = new FormGroup({
-    name: new FormGroup(''),
-    email: new FormGroup(''),
-    subject: new FormGroup(''),
-    message: new FormGroup('')
+    name: new FormControl<string>(''),
+    email: new FormControl<string>(''),
+    subject: new FormControl<string>(''),
+    message: new FormControl<string>('')
   });
 
   ngOnInit() {
