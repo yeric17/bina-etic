@@ -1,5 +1,9 @@
+import { Injectable } from '@angular/core';
 import { ContactFormData } from '../interfaces/email.interface';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class EmailTemplateService {
   public generateContactEmailHtml(formData: ContactFormData): string {
     return `
