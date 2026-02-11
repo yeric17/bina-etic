@@ -1,5 +1,5 @@
 export const environment = {
-    apiHost: 'http://localhost:3000/api',
-    contactEmail: 'contact@binaetic.com'
+    apiHost: 'http://localhost:8080',
+    contactEmail: 'contacto@binaetic.com'
 };
 

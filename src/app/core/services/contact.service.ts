@@ -24,7 +24,7 @@ export class ContactService {
       name: formData.name,
       contactEmail: formData.email,
       subject: formData.subject,
-      body: emailBody
+      body: formData.message
     });
   }
 }
