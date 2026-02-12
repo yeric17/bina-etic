@@ -97,15 +97,16 @@
 
 .logo-image {
 
-  height: 2rem;
+  width: 100%;
+  display: flex;
   border-radius: var(--radius-md);
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .logo-image-container{
-  background-color: white;
+  background-color: #fff;
   padding: 4px;
-  width: 2rem;
+  width: 2.5rem;
   border-radius: var(--radius-sm);
 }
 .logo-text {
